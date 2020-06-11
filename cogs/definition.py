@@ -2,6 +2,8 @@ import random
 from datetime import datetime, timedelta
 from discord.ext import commands
 
+from definitions import DEFINITIONS_DIR
+
 
 class definition(commands.Cog):
 
@@ -9,7 +11,7 @@ class definition(commands.Cog):
         self.bot = bot
         self.word_dict = {}
 
-        f = open("definitions.txt", "r")
+        f = open(DEFINITIONS_DIR, "r")
         for line in f:
             s_line = line.split("=")
             self.word_dict[s_line[0].strip()] = s_line[1].strip()

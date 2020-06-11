@@ -4,10 +4,7 @@ import random
 import re
 import requests
 from discord.ext import commands
-from scrapers.util import sleep_until
-
-# TODO: Endless mode
-# TODO: Extra questions for tie-breakers
+from scrapers.scraper_util import sleep_until
 
 
 class quiz(commands.Cog):
@@ -39,10 +36,6 @@ class quiz(commands.Cog):
             if user in self.answer_map.keys() and False:
                 await msg.channel.send(f'You ({user}) have already voted for this question')
             else:
-                # if not self.valid_question_regex.match(msg.content.strip()):
-                #     ##await ctx.message.channel.send('On-going  ')
-                #     return
-
                 if not self.valid_question_regex.search(msg.content):
                     print("Invalid format! " + msg.content)
 

@@ -1,6 +1,6 @@
 from urllib.request import urlopen
-from scrapers.util import make_soup
 from definitions import FLAGS_DIR
+from scrapers.scraper_util import make_soup
 
 url = 'https://www.worldometers.info/geography/flags-of-the-world/'
 base = 'https://www.worldometers.info'

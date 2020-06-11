@@ -1,5 +1,4 @@
 import asyncio
-from time import sleep
 
 from quart import Quart, request
 import requests
@@ -9,6 +8,7 @@ app = Quart(__name__)
 ip = config.twitch['server_ip']
 
 auth_url = 'https://id.twitch.tv/oauth2/token'
+
 twitch_cog = None
 event_loop = None
 
@@ -35,9 +35,6 @@ async def verify():
         print(str(request.args.get('hub.challenge')))
         return request.args.get('hub.challenge'), 200
 
-    #asyncio.run_coroutine_threadsafe(twitch_cog.post_stream_info(request.json), asyncio.get_event_loop())
-    #await twitch_cog.post_stream_info(request.json)
-
     asyncio.ensure_future(twitch_cog.post_stream_info(request.json), loop=event_loop)
     return 'txt', 200
 
@@ -46,6 +43,7 @@ def set_cog_loop(cog, loop):
     global twitch_cog, event_loop
     twitch_cog = cog
     event_loop = loop
+
 
 def main():
     app.run(port=5000, host='0.0.0.0', use_reloader=False)
